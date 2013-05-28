@@ -18,6 +18,8 @@ module.exports = function(grunt) {
         keepBasename: false,
         keepExtension: false,
         pathType: 'filename',
+        saltPrefix: '',
+        saltSuffix: '',
         debug: false,
     });
 
@@ -35,11 +37,17 @@ module.exports = function(grunt) {
           var ext = '';
           var filename;
 
-          // default: use filename
-          var srcCode = path.basename(srcFile);
-          if (options.pathType === 'filepath') {
-            srcCode = srcFile;
+          if (grunt.file.isDir(srcFile)) {
+            return;
           }
+
+          // default: use filename
+          var target = path.basename(srcFile);
+          if (options.pathType === 'filepath') {
+            target = srcFile;
+          }
+
+          target = options.saltPrefix + target + options.saltSuffix;
 
           if (options.keepBasename === true) {
             basename = path.basename(srcFile, ext || path.extname(srcFile)) + '-';
@@ -49,7 +57,7 @@ module.exports = function(grunt) {
             ext = path.extname(srcFile);
           }
 
-          filename = basename + require('crypto').createHash('md5').update(srcCode).digest('hex') + ext;
+          filename = basename + require('crypto').createHash('md5').update(target).digest('hex') + ext;
 
           var regex = new RegExp(escapeRegExp(path.basename(srcFile)) + "$");
 

@@ -14,10 +14,6 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    watch: {
-      files: '<config:lint.files>',
-      tasks: 'default'
-    },
     jshint: {
       all: [
         'Gruntfile.js',
@@ -36,179 +32,148 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         node: true,
-        es5: true,
 //        globals: {}
       }
     },
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      test: ['tmp']
+    },
     md5filename: {
       main: {
-        files: {
-          'test/fixtures/output/main/': 'test/fixtures/test.js'
-        },
         options: {
-          keepExtension: true,
-          keepBasename: true
-        }
-      },
-      noExtension: {
-        files: {
-          'test/fixtures/output/noExtension/': 'test/fixtures/test.js'
-        },
-        options: {
+          keepBasename: false,
           keepExtension: false,
-          keepBasename: true
-        }
-      },
-      noBasename: {
-        files: {
-          'test/fixtures/output/noBasename/': 'test/fixtures/test.js'
+          pathType: 'filename',
+          debug: true,
         },
-        options: {
-          keepExtension: true,
-          keepBasename: false
-        }
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/main/',
       },
-      noBasenameOrExtension: {
-        files: {
-          'test/fixtures/output/noBasenameOrExtension/': 'test/fixtures/test.js'
-        },
+      plain: {
+        src: ['test/fixtures/**/*'],
+        dest: 'tmp/plain/',
+      },
+      keepBasename: {
         options: {
+          keepBasename: true,
           keepExtension: false,
-          keepBasename: false
-        }
-      },
-      internationalCharacters: {
-        files: {
-          'test/fixtures/output/internationalCharacters/': 'test/fixtures/international.js'
+          pathType: 'filename',
+          debug: true,
         },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/keepBasename/',
+      },
+      keepExtension: {
         options: {
+          keepBasename: false,
           keepExtension: true,
-          keepBasename: true
-        }
-      },
-      expandFiles: {
-        files: [
-          {
-            expand: true,
-            cwd: 'test/fixtures/expand/',
-            src: [
-              '*.js'
-            ],
-            dest: 'test/fixtures/output/expand/js/'
-          },
-          {
-            expand: true,
-            cwd: 'test/fixtures/expand/',
-            src: [
-              '*.css'
-            ],
-            dest: 'test/fixtures/output/expand/css/'
-          }
-        ]
-      },
-      afterEach: {
-        files: [
-          {
-            'test/fixtures/output/callback/': ['test/fixtures/test.js', 'test/fixtures/test2.js']
-          },
-          {
-            expand: true,
-            cwd: 'test/fixtures/expand/',
-            src: [
-              '*.js'
-            ],
-            dest: 'test/fixtures/output/callback/js/'
-          },
-          {
-            expand: true,
-            cwd: 'test/fixtures/expand/',
-            src: [
-              '*.css'
-            ],
-            dest: 'test/fixtures/output/callback/css/'
-          }
-        ],
-        options: {
-          afterEach: function(fileChange) {
-            var fileContent = [
-              'newPath:' + fileChange.newPath,
-              'oldPath:' + fileChange.oldPath,
-              'content:' + fileChange.content,
-              ''
-            ].join('\n');
-            // Doing sync here because there isn't a way to do async in task execution.
-            fs.appendFileSync('test/fixtures/output/afterEach.out', fileContent);
-          }
-        }
-      },
-      after: {
-        files: [
-          {
-            'test/fixtures/output/after/': ['test/fixtures/test.js', 'test/fixtures/test2.js']
-          },
-          {
-            expand: true,
-            cwd: 'test/fixtures/expand/',
-            src: [
-              '*.js'
-            ],
-            dest: 'test/fixtures/output/after/js/'
-          },
-          {
-            expand: true,
-            cwd: 'test/fixtures/expand/',
-            src: [
-              '*.css'
-            ],
-            dest: 'test/fixtures/output/after/css/'
-          }
-        ],
-        options: {
-          after: function(fileChanges) {
-            var fileContent = '';
-            fileChanges.forEach(function(fileChange) {
-              fileContent += [
-                'newPath:' + fileChange.newPath,
-                'oldPath:' + fileChange.oldPath,
-                'content:' + fileChange.content,
-                ''
-              ].join('\n');
-            });
-            // Doing sync here because there isn't a way to do async in task execution.
-            // Do a writeFileSync instead of appendFileSync to help the tests ensure this after callback only runs once
-            fs.writeFileSync('test/fixtures/output/after.out', fileContent);
-          }
-        }
-      },
-      contextAndOptionsAfterEach: {
-        files: {
-          'test/fixtures/output/contextAndOptions/': 'test/fixtures/test.js'
+          pathType: 'filename',
+          debug: true,
         },
-        options: {
-          findMe: true,
-          afterEach: function(fileChange, options) {
-            var fileContent = 'options=' + typeof options + '\nfindMe=' + options.findMe + '\nthis.nameArgs=' + this.nameArgs;
-            fs.appendFileSync('test/fixtures/output/contextAndOptions/afterEach.out', fileContent);
-          }
-        }
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/keepExtension/',
       },
-      contextAndOptionsAfter: {
-        files: {
-          'test/fixtures/output/contextAndOptions/': ['test/fixtures/test.js', 'test/fixtures/test2.js']
+      keepBoth: {
+        options: {
+          keepBasename: true,
+          keepExtension: true,
+          pathType: 'filename',
+          debug: true,
         },
-        options: {
-          findMe: true,
-          after: function(fileChanges, options) {
-            var fileContent = 'options=' + typeof options + '\nfindMe=' + options.findMe + '\nthis.nameArgs=' + this.nameArgs;
-            fs.appendFileSync('test/fixtures/output/contextAndOptions/after.out', fileContent);
-          }
-        }
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/keepBoth/',
       },
-      binary: {
-        files: {
-          'test/fixtures/output/': ['test/fixtures/grunt-logo.png']
-        }
-      }
+      unexpand: {
+        options: {
+          keepBasename: false,
+          keepExtension: false,
+          pathType: 'filename',
+          debug: true,
+        },
+        expand: false,
+        src: ['test/fixtures/**/*'],
+        dest: 'tmp/unexpand/',
+      },
+      unexpandKeepBoth: {
+        options: {
+          keepBasename: true,
+          keepExtension: true,
+          pathType: 'filename',
+          debug: true,
+        },
+        expand: false,
+        src: ['test/fixtures/**/*'],
+        dest: 'tmp/unexpandKeepBoth/',
+      },
+      filepath: {
+        options: {
+          pathType: 'filepath',
+          debug: true,
+        },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/filepath/',
+      },
+      filepathKeepBoth: {
+        options: {
+          keepBasename: true,
+          keepExtension: true,
+          pathType: 'filepath',
+          debug: true,
+        },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/filepathKeepBoth/',
+      },
+      saltPrefix: {
+        options: {
+          saltPrefix: '*prefix*',
+          pathType: 'filename',
+          debug: true,
+        },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/saltPrefix/',
+      },
+      saltSuffix: {
+        options: {
+          saltSuffix: '.suffix.',
+          keepBasename: true,
+          keepExtension: true,
+          pathType: 'filename',
+          debug: true,
+        },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/saltSuffix/',
+      },
+      saltBoth: {
+        options: {
+          saltPrefix: '/prefix/',
+          saltSuffix: '{suffix[',
+          keepBasename: true,
+          keepExtension: true,
+          pathType: 'filepath',
+          debug: true,
+        },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/saltBoth/',
+      },
     },
     nodeunit: {
       tests: 'test/*_test.js'
