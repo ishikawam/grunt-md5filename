@@ -1,7 +1,6 @@
 # grunt-md5filename
 [![Build Status](https://travis-ci.org/ishikawam/grunt-md5filename.png?branch=master)](https://travis-ci.org/ishikawam/grunt-md5filename)
 [![Dependency Status](https://gemnasium.com/ishikawam/grunt-md5filename.png)](https://gemnasium.com/ishikawam/grunt-md5filename)
-[![Coverage Status](https://coveralls.io/repos/ishikawam/grunt-md5filename/badge.png)](https://coveralls.io/r/ishikawam/grunt-md5filename)
 [![endorse](https://api.coderwall.com/m_ishikawa/endorsecount.png)](https://coderwall.com/m_ishikawa)
 
 > Convert file names to MD5.
