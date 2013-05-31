@@ -15,9 +15,9 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
+        pathType: 'filename',
         keepBasename: false,
         keepExtension: false,
-        pathType: 'filename',
         saltPrefix: '',
         saltSuffix: '',
         debug: false,

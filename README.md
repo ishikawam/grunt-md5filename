@@ -32,16 +32,81 @@ _Run this task with the `grunt md5filename` command._
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 ### Options
 
-#### pathtype
+#### pathType
 Type: `String`
+Default: 'filename'
+
+select MD5 target for file name or file name with path.
+
+* filename
+  * file name
+  * ex) octocat.png
+* filepath
+  * file name with path
+  * ex) img/github/octocat.png
 
 
 #### keepBasename
-Type: `String`
+Type: `Boolean`
+Default: `false`
+
+converted file name add to filename(exclude extension).
+
+```
+octcat.png
+->
+octcat-e097c640abd1bba3457ca2deaf0d2cec
+```
 
 
 #### keepExtension
+Type: `Boolean`
+Default: `false`
+
+converted file name add to extension.
+
+```
+octcat.png
+->
+e097c640abd1bba3457ca2deaf0d2cec.png
+```
+
+
+#### saltPrefix
 Type: `String`
+Default: ''
+
+prefix salt
+
+```
+octcat.png
+-> (md5 -s '__PREFIX__octcat.png')
+4dd44b339b8ee57d21894ac57c8ca571
+```
+
+#### saltSuffix
+Type: `String`
+Default: ''
+
+suffix salt
+
+```
+octcat.png
+-> (md5 -s 'octcat.png__SUFFIX__')
+d43bc35325462bf21a3c7fba0902ed86
+```
+
+
+#### debug
+Type: `Boolean`
+Default: `false`
+
+output debug log.
+
+```
+File 'original/img/github/octocat.png' to 'htdocs/img/github/e097c640abd1bba3457ca2deaf0d2cec.png' created.
+…
+```
 
 
 ### Usage Examples
@@ -50,15 +115,15 @@ Type: `String`
 md5filename: {
   build: {
     options: {
-      keepBasename: false, // デフォルトfalseでは(MD5ファイル名.jpg) trueでは(元のファイル名-MD5ファイル名.jpg)
-      keepExtension: true, // デフォルトfalseでは拡張子を排除 trueでは元の拡張子を付与
-      pathType: 'filename', // MD5元は filename ファイル名, filepath 相対パス
-      debug: true, // 元ファイル、保存ファイルを表示
+      keepBasename: false,
+      keepExtension: true,
+      pathType: 'filename',
+      debug: true,
     },
-    expand: true, // ディレクトリ構成を保つかどうか
-    cwd: 'original/img/thumbnails/', // expand:true の場合のベースパス
-    src: ['**/*.{png,jpg}'], // 元のファイル
-    dest: 'htdocs/img/thumbnails/', // 保存先
+    expand: true,
+    cwd: 'original/img/thumbnails/',
+    src: ['**/*.{png,jpg}'],
+    dest: 'htdocs/img/thumbnails/',
   },
 }
 ```
