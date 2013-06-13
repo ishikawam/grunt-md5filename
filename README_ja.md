@@ -5,7 +5,7 @@
 
 > ファイル名をMD5に変換して保存します
   
-> ex.) octocat.png -> e097c640abd1bba3457ca2deaf0d2cec
+> ex.) octocat.png -> c29b1fd35e7e51210f3264d567650ac7
 
 
 ## 始め方
@@ -44,11 +44,23 @@ MD5変換元の文字列を指定したファイル名にするか、パスを�
 
 * filename
   * ファイル名
-  * octocat.png
+  * 例:
+
+```
+octcat.png
+->  md5('octcat.png')
+c29b1fd35e7e51210f3264d567650ac7
+```
+
 * filepath
   * パスを含むファイル名
-  * img/github/octocat.png
+  * 例:
 
+```
+img/github/octocat.png
+->  md5('img/github/octocat.png')
+ea8bfe94d1b4278fcd9dca963dde3e00
+```
 
 #### keepBasename
 Type: `Boolean`
@@ -58,10 +70,9 @@ MD5変換後のファイル名に元のファイル名を接頭辞として付�
 
 ```
 octcat.png
-->
-octcat-e097c640abd1bba3457ca2deaf0d2cec
+-> 'octcat' + '-' + md5(octcat.png)
+octcat-c29b1fd35e7e51210f3264d567650ac7
 ```
-
 
 #### keepExtension
 Type: `Boolean`
@@ -71,10 +82,9 @@ MD5変換後のファイル名に元のファイルの拡張子を接尾辞と�
 
 ```
 octcat.png
-->
-e097c640abd1bba3457ca2deaf0d2cec.png
+-> md5(octcat.png) + '.png'
+c29b1fd35e7e51210f3264d567650ac7.png
 ```
-
 
 #### saltPrefix
 Type: `String`
@@ -84,7 +94,7 @@ MD5変換元の文字列にソルト(接頭辞)を指定します
 
 ```
 octcat.png
--> (md5 -s '__PREFIX__octcat.png')
+-> md5('__PREFIX__octcat.png')
 4dd44b339b8ee57d21894ac57c8ca571
 ```
 
@@ -96,10 +106,9 @@ MD5変換元の文字列にソルト(接尾辞)を指定します
 
 ```
 octcat.png
--> (md5 -s 'octcat.png__SUFFIX__')
+-> md5('octcat.png__SUFFIX__')
 d43bc35325462bf21a3c7fba0902ed86
 ```
-
 
 #### debug
 Type: `Boolean`
@@ -108,10 +117,9 @@ Default: `false`
 変換の詳細を表示します
 
 ```
-File 'original/img/github/octocat.png' to 'htdocs/img/github/e097c640abd1bba3457ca2deaf0d2cec.png' created.
-…
+File 'original/img/github/octocat.png' to 'htdocs/img/github/c29b1fd35e7e51210f3264d567650ac7.png' created.
+...
 ```
-
 
 ### 使用例
 
@@ -127,7 +135,7 @@ md5filename: {
 	expand: true, // ディレクトリ構成を保つかどうか
 	cwd: 'original/img/thumbnails/', // expand:true の場合のベースパス
 	src: ['**/*.{png,jpg}'], // 元のファイル
-	dest: 'htdocs/img/thumbnails/', // 保存先
+	dest: 'htdocs/img/thumbnails/', // 保存先ディレクトリ
   },
 }
 ```
@@ -135,7 +143,7 @@ md5filename: {
 
 ## リリース履歴
 
- * 2013-05-28   v0.0.1   init.
+ * 2013-06-13   v0.1.0   init.
 
 ---
 

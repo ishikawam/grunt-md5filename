@@ -5,6 +5,7 @@
 
 > Convert file names to MD5.
 
+> ex.) octocat.png -> c29b1fd35e7e51210f3264d567650ac7
 
 
 ## Getting Started
@@ -25,11 +26,11 @@ grunt.loadNpmTasks('grunt-md5filename');
 *This plugin was designed to work with Grunt 0.4.x.*
 
 
-
 ## MD5filename task
 _Run this task with the `grunt md5filename` command._
 
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+
 ### Options
 
 #### pathType
@@ -40,11 +41,23 @@ select MD5 target for file name or file name with path.
 
 * filename
   * file name
-  * ex) octocat.png
+  * ex)
+
+```
+octcat.png
+->  md5('octcat.png')
+c29b1fd35e7e51210f3264d567650ac7
+```
+
 * filepath
   * file name with path
-  * ex) img/github/octocat.png
+  * ex)
 
+```
+img/github/octocat.png
+->  md5('img/github/octocat.png')
+ea8bfe94d1b4278fcd9dca963dde3e00
+```
 
 #### keepBasename
 Type: `Boolean`
@@ -54,10 +67,9 @@ converted file name add to filename(exclude extension).
 
 ```
 octcat.png
-->
-octcat-e097c640abd1bba3457ca2deaf0d2cec
+-> 'octcat' + '-' + md5(octcat.png)
+octcat-c29b1fd35e7e51210f3264d567650ac7
 ```
-
 
 #### keepExtension
 Type: `Boolean`
@@ -67,10 +79,9 @@ converted file name add to extension.
 
 ```
 octcat.png
-->
-e097c640abd1bba3457ca2deaf0d2cec.png
+-> md5(octcat.png) + '.png'
+c29b1fd35e7e51210f3264d567650ac7.png
 ```
-
 
 #### saltPrefix
 Type: `String`
@@ -80,7 +91,7 @@ prefix salt
 
 ```
 octcat.png
--> (md5 -s '__PREFIX__octcat.png')
+-> md5('__PREFIX__octcat.png')
 4dd44b339b8ee57d21894ac57c8ca571
 ```
 
@@ -92,10 +103,9 @@ suffix salt
 
 ```
 octcat.png
--> (md5 -s 'octcat.png__SUFFIX__')
+-> md5('octcat.png__SUFFIX__')
 d43bc35325462bf21a3c7fba0902ed86
 ```
-
 
 #### debug
 Type: `Boolean`
@@ -104,10 +114,10 @@ Default: `false`
 output debug log.
 
 ```
-File 'original/img/github/octocat.png' to 'htdocs/img/github/e097c640abd1bba3457ca2deaf0d2cec.png' created.
+File 'original/img/github/octocat.png' to 'htdocs/img/github/c29b1fd35e7e51210f3264d567650ac7.png' created.
+...
 …
 ```
-
 
 ### Usage Examples
 
@@ -131,7 +141,7 @@ md5filename: {
 
 ## Release History
 
- * 2013-05-28   v0.0.1   init.
+ * 2013-06-13   v0.1.0   init.
 
 ---
 
