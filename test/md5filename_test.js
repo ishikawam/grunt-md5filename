@@ -5,7 +5,7 @@ exports.copy = {
     main: function(test) {
         'use strict';
 
-        test.expect(4);
+        test.expect(5);
 
         var actual;
         var expected;
@@ -29,6 +29,16 @@ exports.copy = {
         actual = grunt.file.read('tmp/main/dir/4c427803070155fb51ff613e9bc77b39');
         expected = grunt.file.read('test/fixtures/dir/dir.dot.file.txt');
         test.equal(expected, actual);
+
+        // hashFile
+        var hashmap = grunt.file.readJSON('tmp/mainHash.json');
+        var json = {
+            "test/fixtures/dir/DirTestFile":"tmp/main/dir/0a5556155683808d729747bd2ae40e64",
+            "test/fixtures/dir/dir.dot.file.txt":"tmp/main/dir/4c427803070155fb51ff613e9bc77b39",
+            "test/fixtures/dot.file.txt":"tmp/main/3db5fd673488a73564460f419afe53ef",
+            "test/fixtures/testFile":"tmp/main/d4728e20f195aa3992a6172487f5f91f"
+        };
+        test.deepEqual(hashmap, json);
 
         test.done();
     },

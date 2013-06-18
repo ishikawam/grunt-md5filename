@@ -15,15 +15,17 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-        pathType: 'filename',
-        keepBasename: false,
-        keepExtension: false,
-        saltPrefix: '',
-        saltSuffix: '',
-        debug: false,
+      pathType: 'filename',
+      keepBasename: false,
+      keepExtension: false,
+      saltPrefix: '',
+      saltSuffix: '',
+      hashFile: null,
+      debug: false,
     });
 
     var count = 0;
+    var hashmap = {};
 
     grunt.verbose.writeflags(options, 'Options');
 
@@ -67,6 +69,7 @@ module.exports = function(grunt) {
             destFile = filePair.dest.replace(regex, filename);
           }
           grunt.file.copy(srcFile, destFile);
+          hashmap[srcFile] = destFile;
 
           if (options.debug === true) {
             grunt.log.writeln('File \'' + srcFile + '\' to \'' + destFile + '\' created.');
@@ -79,6 +82,10 @@ module.exports = function(grunt) {
       });
       count++;
     });
+
+    if (options.hashFile !== null) {
+      grunt.file.write(options.hashFile, JSON.stringify(hashmap));
+    }
     grunt.log.writeln(count + ' files created.');
   });
 

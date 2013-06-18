@@ -45,6 +45,7 @@ module.exports = function(grunt) {
           keepBasename: false,
           keepExtension: false,
           pathType: 'filename',
+          hashFile: 'tmp/mainHash.json',
           debug: true,
         },
         expand: true,

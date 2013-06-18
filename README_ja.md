@@ -110,6 +110,19 @@ octcat.png
 d43bc35325462bf21a3c7fba0902ed86
 ```
 
+#### hashFile
+Type: `String`
+Default: null
+
+MD5変換元と変換したファイル名のハッシュマップをjson形式でファイル保存します
+
+```
+{
+  "octcat.png": "c29b1fd35e7e51210f3264d567650ac7",
+  "img/github/octocat.png": "ea8bfe94d1b4278fcd9dca963dde3e00"
+}
+```
+
 #### debug
 Type: `Boolean`
 Default: `false`
@@ -130,6 +143,7 @@ md5filename: {
 	  keepBasename: false, // デフォルトfalseでは(MD5ファイル名.jpg) trueでは(元のファイル名-MD5ファイル名.jpg)
 	  keepExtension: true, // デフォルトfalseでは拡張子を排除 trueでは元の拡張子を付与
 	  pathType: 'filename', // MD5元は filename ファイル名, filepath 相対パス
+	  hashFile: 'tmp/hash.json', // ハッシュマップjsonファイルを保存
 	  debug: true, // 元ファイル、保存ファイルを表示
 	},
 	expand: true, // ディレクトリ構成を保つかどうか
@@ -143,7 +157,8 @@ md5filename: {
 
 ## リリース履歴
 
- * 2013-06-13   v0.1.0   init.
+ * 2013-06-18   v0.1.1   hashFileオプションをサポート
+ * 2013-06-13   v0.1.0   リリース
 
 ---
 

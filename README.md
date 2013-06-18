@@ -107,6 +107,19 @@ octcat.png
 d43bc35325462bf21a3c7fba0902ed86
 ```
 
+#### hashFile
+Type: `String`
+Default: null
+
+save hash map file, json format.
+
+```
+{
+  "octcat.png": "c29b1fd35e7e51210f3264d567650ac7",
+  "img/github/octocat.png": "ea8bfe94d1b4278fcd9dca963dde3e00"
+}
+```
+
 #### debug
 Type: `Boolean`
 Default: `false`
@@ -128,6 +141,7 @@ md5filename: {
       keepBasename: false,
       keepExtension: true,
       pathType: 'filename',
+      hashFile: 'tmp/hash.json',
       debug: true,
     },
     expand: true,
@@ -141,7 +155,8 @@ md5filename: {
 
 ## Release History
 
- * 2013-06-13   v0.1.0   init.
+ * 2013-06-18   v0.1.1   Support hashFile option.
+ * 2013-06-13   v0.1.0   Init.
 
 ---
 
