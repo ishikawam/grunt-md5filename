@@ -155,6 +155,7 @@ md5filename: {
 
 ## Release History
 
+ * 2013-06-18   v0.1.2   Change hashFile path.
  * 2013-06-18   v0.1.1   Support hashFile option.
  * 2013-06-13   v0.1.0   Init.
 
