@@ -111,7 +111,7 @@ d43bc35325462bf21a3c7fba0902ed86
 Type: `String`
 Default: null
 
-save HashMap file, json format.
+save hashmap file, json format.
 
 ```
 {
