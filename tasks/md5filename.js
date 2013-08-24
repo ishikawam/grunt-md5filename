@@ -21,6 +21,7 @@ module.exports = function(grunt) {
       saltPrefix: '',
       saltSuffix: '',
       hashFile: null,
+      hashLength: null,     // default 32 md5
       debug: false,
     });
 
@@ -37,7 +38,6 @@ module.exports = function(grunt) {
           var basename = '';
           var destFile;
           var ext = '';
-          var filename;
 
           if (grunt.file.isDir(srcFile)) {
             return;
@@ -59,7 +59,11 @@ module.exports = function(grunt) {
             ext = path.extname(srcFile);
           }
 
-          filename = basename + require('crypto').createHash('md5').update(target).digest('hex') + ext;
+          var hash = require('crypto').createHash('md5').update(target).digest('hex');
+          if (options.hashLength !== null) {
+            hash = hash.slice(0, options.hashLength);
+          }
+          var filename = basename + hash + ext;
 
           var regex = new RegExp(escapeRegExp(path.basename(srcFile)) + "$");
 

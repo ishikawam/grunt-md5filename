@@ -109,7 +109,7 @@ d43bc35325462bf21a3c7fba0902ed86
 
 #### hashFile
 Type: `String`
-Default: null
+Default: `null`
 
 save hashmap file, json format.
 
@@ -118,6 +118,19 @@ save hashmap file, json format.
   "octcat.png": "c29b1fd35e7e51210f3264d567650ac7",
   "img/github/octocat.png": "ea8bfe94d1b4278fcd9dca963dde3e00"
 }
+```
+
+#### hashLength
+Type: `Number`
+Default: `null (32)`
+
+split the character length of a hash digest hex value to shorten string.
+MD5 is 32 characters in length default.
+
+```
+octcat.png
+->  md5('octcat.png'), hashLength = 8
+c29b1fd3
 ```
 
 #### debug
@@ -142,6 +155,7 @@ md5filename: {
       keepExtension: true,
       pathType: 'filename',
       hashFile: 'tmp/hash.json',
+      hashLength: 20,
       debug: true,
     },
     expand: true,
@@ -155,8 +169,9 @@ md5filename: {
 
 ## Release History
 
- * 2013-06-18   v0.1.2   Change hashFile path.
- * 2013-06-18   v0.1.1   Support hashFile option.
+ * 2013-08-25   v0.1.3   Add `hashLength` option.
+ * 2013-06-18   v0.1.2   Change `hashFile` path.
+ * 2013-06-18   v0.1.1   Support `hashFile` option.
  * 2013-06-13   v0.1.0   Init.
 
 ---

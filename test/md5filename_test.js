@@ -52,22 +52,22 @@ exports.copy = {
         var expected;
 
         // md5('testFile')
-        actual = grunt.file.read('tmp/keepBasename/testFile-d4728e20f195aa3992a6172487f5f91f');
+        actual = grunt.file.read('tmp/keepBasename/testFile-d4728e20f195aa3992a6172487f5f91');
         expected = grunt.file.read('test/fixtures/testFile');
         test.equal(expected, actual);
 
         // md5('dot.file.txt')
-        actual = grunt.file.read('tmp/keepBasename/dot.file-3db5fd673488a73564460f419afe53ef');
+        actual = grunt.file.read('tmp/keepBasename/dot.file-3db5fd673488a73564460f419afe53e');
         expected = grunt.file.read('test/fixtures/dot.file.txt');
         test.equal(expected, actual);
 
         // md5('DirTestFile')
-        actual = grunt.file.read('tmp/keepBasename/dir/DirTestFile-0a5556155683808d729747bd2ae40e64');
+        actual = grunt.file.read('tmp/keepBasename/dir/DirTestFile-0a5556155683808d729747bd2ae40e6');
         expected = grunt.file.read('test/fixtures/dir/DirTestFile');
         test.equal(expected, actual);
 
         // md5('dir.dot.file.txt')
-        actual = grunt.file.read('tmp/keepBasename/dir/dir.dot.file-4c427803070155fb51ff613e9bc77b39');
+        actual = grunt.file.read('tmp/keepBasename/dir/dir.dot.file-4c427803070155fb51ff613e9bc77b3');
         expected = grunt.file.read('test/fixtures/dir/dir.dot.file.txt');
         test.equal(expected, actual);
 
@@ -83,22 +83,22 @@ exports.copy = {
         var expected;
 
         // md5('testFile')
-        actual = grunt.file.read('tmp/keepExtension/d4728e20f195aa3992a6172487f5f91f');
+        actual = grunt.file.read('tmp/keepExtension/d4728e20f195aa3992a6172487f5f9');
         expected = grunt.file.read('test/fixtures/testFile');
         test.equal(expected, actual);
 
         // md5('dot.file.txt')
-        actual = grunt.file.read('tmp/keepExtension/3db5fd673488a73564460f419afe53ef.txt');
+        actual = grunt.file.read('tmp/keepExtension/3db5fd673488a73564460f419afe53.txt');
         expected = grunt.file.read('test/fixtures/dot.file.txt');
         test.equal(expected, actual);
 
         // md5('DirTestFile')
-        actual = grunt.file.read('tmp/keepExtension/dir/0a5556155683808d729747bd2ae40e64');
+        actual = grunt.file.read('tmp/keepExtension/dir/0a5556155683808d729747bd2ae40e');
         expected = grunt.file.read('test/fixtures/dir/DirTestFile');
         test.equal(expected, actual);
 
         // md5('dir.dot.file.txt')
-        actual = grunt.file.read('tmp/keepExtension/dir/4c427803070155fb51ff613e9bc77b39.txt');
+        actual = grunt.file.read('tmp/keepExtension/dir/4c427803070155fb51ff613e9bc77b.txt');
         expected = grunt.file.read('test/fixtures/dir/dir.dot.file.txt');
         test.equal(expected, actual);
 
