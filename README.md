@@ -107,6 +107,17 @@ octcat.png
 d43bc35325462bf21a3c7fba0902ed86
 ```
 
+#### ignorePatterns
+Type: `Array`
+Default: []
+
+ignore file pattern
+
+```
+octcat.png
+-> 'octcat.png'
+```
+
 #### hashFile
 Type: `String`
 Default: `null`
