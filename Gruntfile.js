@@ -177,6 +177,17 @@ module.exports = function(grunt) {
         src: ['**/*'],
         dest: 'tmp/saltBoth/',
       },
+      ignorePatterns: {
+        options: {
+          pathType: 'filepath',
+          ignorePatterns: ['*dot.file.txt'],
+          debug: true,
+        },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/ignorePatterns/',
+      },
     },
     nodeunit: {
       tests: 'test/*_test.js'

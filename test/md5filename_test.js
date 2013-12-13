@@ -352,4 +352,35 @@ exports.copy = {
 
         test.done();
     },
+
+    ignorePatterns: function(test) {
+        'use strict';
+
+        test.expect(4);
+
+        var actual;
+        var expected;
+
+        // md5('/prefix/test/fixtures/testFile{suffix[')
+        actual = grunt.file.read('tmp/ignorePatterns/94cc455579f592e608529122f04a5c29');
+        expected = grunt.file.read('test/fixtures/testFile');
+        test.equal(expected, actual);
+
+        // md5('/prefix/test/fixtures/dot.file.txt{suffix[')
+        actual = grunt.file.read('tmp/ignorePatterns/dot.file.txt');
+        expected = grunt.file.read('test/fixtures/dot.file.txt');
+        test.equal(expected, actual);
+
+        // md5('/prefix/test/fixtures/dir/DirTestFile{suffix[')
+        actual = grunt.file.read('tmp/ignorePatterns/dir/2bd59450fc1c9462569c8bb8fdcff56f');
+        expected = grunt.file.read('test/fixtures/dir/DirTestFile');
+        test.equal(expected, actual);
+
+        // md5('/prefix/test/fixtures/dir/dir.dot.file.txt{suffix[')
+        actual = grunt.file.read('tmp/ignorePatterns/dir/dir.dot.file.txt');
+        expected = grunt.file.read('test/fixtures/dir/dir.dot.file.txt');
+        test.equal(expected, actual);
+
+        test.done();
+    },
 };

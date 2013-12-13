@@ -20,6 +20,7 @@ module.exports = function(grunt) {
       keepExtension: false,
       saltPrefix: '',
       saltSuffix: '',
+      ignorePatterns: [],
       hashFile: null,
       hashLength: null,     // default 32 md5
       debug: false,
@@ -43,27 +44,37 @@ module.exports = function(grunt) {
             return;
           }
 
-          // default: use filename
-          var target = path.basename(srcFile);
-          if (options.pathType === 'filepath') {
-            target = srcFile;
-          }
+          var isMatch = false;
+          options.ignorePatterns.forEach(function(pattern) {
+            isMatch = isMatch || (grunt.file.isMatch({matchBase: true}, pattern, srcFile));
+          });
 
-          target = options.saltPrefix + target + options.saltSuffix;
+          var filename = '';
+          if (!isMatch) {
+            // default: use filename
+            var target = path.basename(srcFile);
+            if (options.pathType === 'filepath') {
+              target = srcFile;
+            }
 
-          if (options.keepBasename === true) {
-            basename = path.basename(srcFile, ext || path.extname(srcFile)) + '-';
-          }
+            target = options.saltPrefix + target + options.saltSuffix;
 
-          if (options.keepExtension === true) {
-            ext = path.extname(srcFile);
-          }
+            if (options.keepBasename === true) {
+              basename = path.basename(srcFile, ext || path.extname(srcFile)) + '-';
+            }
 
-          var hash = require('crypto').createHash('md5').update(target).digest('hex');
-          if (options.hashLength !== null) {
-            hash = hash.slice(0, options.hashLength);
+            if (options.keepExtension === true) {
+              ext = path.extname(srcFile);
+            }
+
+            var hash = require('crypto').createHash('md5').update(target).digest('hex');
+            if (options.hashLength !== null) {
+              hash = hash.slice(0, options.hashLength);
+            }
+            filename = basename + hash + ext;
+          } else {
+            filename = path.basename(srcFile);
           }
-          var filename = basename + hash + ext;
 
           var regex = new RegExp(escapeRegExp(path.basename(srcFile)) + "$");
 
