@@ -115,7 +115,8 @@ ignore file pattern
 
 ```
 octcat.png
--> 'octcat.png'
+-> ignorePatterns: ['*.png'],
+octcat.png
 ```
 
 #### hashFile
@@ -180,6 +181,7 @@ md5filename: {
 
 ## Release History
 
+ * 2013-12-13   v0.1.4   Add `ignorePatterns` option.
  * 2013-08-25   v0.1.3   Add `hashLength` option.
  * 2013-06-18   v0.1.2   Change `hashFile` path.
  * 2013-06-18   v0.1.1   Support `hashFile` option.

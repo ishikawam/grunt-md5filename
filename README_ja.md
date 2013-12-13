@@ -110,6 +110,18 @@ octcat.png
 d43bc35325462bf21a3c7fba0902ed86
 ```
 
+#### ignorePatterns
+Type: `Array`
+Default: []
+
+MD5変換から除外するファイルを指定します
+
+```
+octcat.png
+-> ignorePatterns: ['*.png'],
+octcat.png
+```
+
 #### hashFile
 Type: `String`
 Default: `null`
@@ -171,6 +183,7 @@ md5filename: {
 
 ## リリース履歴
 
+ * 2013-08-25   v0.1.4   `ignorePatterns` オプションを追加.
  * 2013-08-25   v0.1.3   `hashLength` オプションを追加.
  * 2013-06-18   v0.1.2   `hashFile`に保存するファイルのパスの基準を変更
  * 2013-06-18   v0.1.1   `hashFile`オプションをサポート
