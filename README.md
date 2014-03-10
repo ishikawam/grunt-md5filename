@@ -191,3 +191,7 @@ md5filename: {
 
 Task submitted by [Masayuki Ishikawa](https://github.com/ishikawam)
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ishikawam/grunt-md5filename/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
