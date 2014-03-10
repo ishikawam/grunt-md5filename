@@ -1,7 +1,10 @@
 # grunt-md5filename
+[![NPM version](https://badge.fury.io/js/grunt-md5filename.png)](http://badge.fury.io/js/grunt-md5filename)
 [![Build Status](https://travis-ci.org/ishikawam/grunt-md5filename.png?branch=master)](https://travis-ci.org/ishikawam/grunt-md5filename)
 [![Dependency Status](https://gemnasium.com/ishikawam/grunt-md5filename.png)](https://gemnasium.com/ishikawam/grunt-md5filename)
 [![endorse](https://api.coderwall.com/m_ishikawa/endorsecount.png)](https://coderwall.com/m_ishikawa)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ishikawam/grunt-md5filename/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 > Convert file names to MD5.
 
@@ -190,8 +193,4 @@ md5filename: {
 ---
 
 Task submitted by [Masayuki Ishikawa](https://github.com/ishikawam)
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ishikawam/grunt-md5filename/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
