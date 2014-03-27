@@ -85,8 +85,8 @@ module.exports = function(grunt) {
           }
           grunt.file.copy(srcFile, destFile);
 
-          var mapSrcFile = srcFile.replace(new RegExp('^' + filePair.orig.cwd), '');
-          var mapDestFile = destFile.replace(new RegExp('^' + filePair.orig.dest), '');
+          var mapSrcFile = srcFile;
+          var mapDestFile = destFile;
           hashmap[mapSrcFile] = mapDestFile;
 
           if (options.debug === true) {
