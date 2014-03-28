@@ -133,10 +133,13 @@ MD5変換元と変換したファイル名のハッシュマップをjson形式�
 
 ```
 {
-  "octcat.png": "c29b1fd35e7e51210f3264d567650ac7",
-  "img/github/octocat.png": "ea8bfe94d1b4278fcd9dca963dde3e00"
+  "src/octcat.png": "dest/c29b1fd35e7e51210f3264d567650ac7",
+  "src/img/github/octocat.png": "dest/img/github/ea8bfe94d1b4278fcd9dca963dde3e00"
 }
 ```
+> **仕様変更のお知らせ**<br>
+> v0.1.5より出力するjsonに記載されるMD5変換後のファイルパスの表記仕様を変更しました。<br>
+> Gruntのルートディレクトリからの相対パスになります。
 
 #### hashLength
 Type: `Number`
@@ -186,7 +189,8 @@ md5filename: {
 
 ## リリース履歴
 
- * 2013-08-25   v0.1.4   `ignorePatterns` オプションを追加.
+ * 2014-03-28   v0.1.5   `hashFile` オプション使用時に生成されるjsonファイルに記載されるMD5返還後ファイルパスを、Gruntルートディレクトリからのパスに仕様変更しました。
+ * 2013-12-13   v0.1.4   `ignorePatterns` オプションを追加.
  * 2013-08-25   v0.1.3   `hashLength` オプションを追加.
  * 2013-06-18   v0.1.2   `hashFile`に保存するファイルのパスの基準を変更
  * 2013-06-18   v0.1.1   `hashFile`オプションをサポート

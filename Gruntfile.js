@@ -53,6 +53,28 @@ module.exports = function(grunt) {
         src: ['**/*'],
         dest: 'tmp/main/',
       },
+      hashFileUnexpand: {
+        options: {
+          keepBasename: false,
+          keepExtension: false,
+          pathType: 'filename',
+          hashFile: 'tmp/hashFileUnexpand.json',
+          debug: true,
+        },
+        expand: false,
+        src: ['test/fixtures/**/*'],
+        dest: 'tmp/hashFileUnexpand/',
+      },
+      hashFile: {
+        options: {
+          keepBasename: false,
+          keepExtension: false,
+          pathType: 'filename',
+          hashFile: 'tmp/hashFile.json',
+          debug: true,
+        },
+        files: {'tmp/hashFile/': 'test/fixtures/**/*'}
+      },
       plain: {
         src: ['test/fixtures/**/*'],
         dest: 'tmp/plain/',
