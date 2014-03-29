@@ -130,10 +130,13 @@ save hashmap file, json format.
 
 ```
 {
-  "octcat.png": "c29b1fd35e7e51210f3264d567650ac7",
-  "img/github/octocat.png": "ea8bfe94d1b4278fcd9dca963dde3e00"
+  "src/octcat.png": "dest/c29b1fd35e7e51210f3264d567650ac7",
+  "src/img/github/octocat.png": "dest/img/github/ea8bfe94d1b4278fcd9dca963dde3e00"
 }
 ```
+> **specification changes notice**<br>
+> After v0.1.5, json hashmap file specification changes.
+> Dest path changes to Grunt root directory relative path.
 
 #### hashLength
 Type: `Number`
@@ -184,6 +187,7 @@ md5filename: {
 
 ## Release History
 
+ * 2014-03-28   v0.1.5   Json hashmap file specification changes. Dest path changes to Grunt root directory relative path.
  * 2013-12-13   v0.1.4   Add `ignorePatterns` option.
  * 2013-08-25   v0.1.3   Add `hashLength` option.
  * 2013-06-18   v0.1.2   Change `hashFile` path.

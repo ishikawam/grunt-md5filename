@@ -33,10 +33,92 @@ exports.copy = {
         // hashFile
         var hashmap = grunt.file.readJSON('tmp/mainHash.json');
         var json = {
-            "dir/DirTestFile":"dir/0a5556155683808d729747bd2ae40e64",
-            "dir/dir.dot.file.txt":"dir/4c427803070155fb51ff613e9bc77b39",
-            "dot.file.txt":"3db5fd673488a73564460f419afe53ef",
-            "testFile":"d4728e20f195aa3992a6172487f5f91f"
+            'dir/DirTestFile': 'tmp/main/dir/0a5556155683808d729747bd2ae40e64',
+            'dir/dir.dot.file.txt': 'tmp/main/dir/4c427803070155fb51ff613e9bc77b39',
+            'dot.file.txt': 'tmp/main/3db5fd673488a73564460f419afe53ef',
+            'testFile': 'tmp/main/d4728e20f195aa3992a6172487f5f91f'
+        };
+        test.deepEqual(hashmap, json);
+
+        test.done();
+    },
+
+    hashFileUnexpand: function(test) {
+        'use strict';
+
+        test.expect(5);
+
+        var actual;
+        var expected;
+
+        // md5('testFile')
+        actual = grunt.file.read('tmp/hashFileUnexpand/d4728e20f195aa3992a6172487f5f91f');
+        expected = grunt.file.read('test/fixtures/testFile');
+        test.equal(expected, actual);
+
+        // md5('dot.file.txt')
+        actual = grunt.file.read('tmp/hashFileUnexpand/3db5fd673488a73564460f419afe53ef');
+        expected = grunt.file.read('test/fixtures/dot.file.txt');
+        test.equal(expected, actual);
+
+        // md5('DirTestFile')
+        actual = grunt.file.read('tmp/hashFileUnexpand/0a5556155683808d729747bd2ae40e64');
+        expected = grunt.file.read('test/fixtures/dir/DirTestFile');
+        test.equal(expected, actual);
+
+        // md5('dir.dot.file.txt')
+        actual = grunt.file.read('tmp/hashFileUnexpand/4c427803070155fb51ff613e9bc77b39');
+        expected = grunt.file.read('test/fixtures/dir/dir.dot.file.txt');
+        test.equal(expected, actual);
+
+        // hashFile
+        var hashmap = grunt.file.readJSON('tmp/hashFileUnexpand.json');
+        var json = {
+            'test/fixtures/dir/DirTestFile': 'tmp/hashFileUnexpand/0a5556155683808d729747bd2ae40e64',
+            'test/fixtures/dir/dir.dot.file.txt': 'tmp/hashFileUnexpand/4c427803070155fb51ff613e9bc77b39',
+            'test/fixtures/dot.file.txt': 'tmp/hashFileUnexpand/3db5fd673488a73564460f419afe53ef',
+            'test/fixtures/testFile': 'tmp/hashFileUnexpand/d4728e20f195aa3992a6172487f5f91f'
+        };
+        test.deepEqual(hashmap, json);
+
+        test.done();
+    },
+
+    hashFile: function(test) {
+        'use strict';
+
+        test.expect(5);
+
+        var actual;
+        var expected;
+
+        // md5('testFile')
+        actual = grunt.file.read('tmp/hashFile/d4728e20f195aa3992a6172487f5f91f');
+        expected = grunt.file.read('test/fixtures/testFile');
+        test.equal(expected, actual);
+
+        // md5('dot.file.txt')
+        actual = grunt.file.read('tmp/hashFile/3db5fd673488a73564460f419afe53ef');
+        expected = grunt.file.read('test/fixtures/dot.file.txt');
+        test.equal(expected, actual);
+
+        // md5('DirTestFile')
+        actual = grunt.file.read('tmp/hashFile/0a5556155683808d729747bd2ae40e64');
+        expected = grunt.file.read('test/fixtures/dir/DirTestFile');
+        test.equal(expected, actual);
+
+        // md5('dir.dot.file.txt')
+        actual = grunt.file.read('tmp/hashFile/4c427803070155fb51ff613e9bc77b39');
+        expected = grunt.file.read('test/fixtures/dir/dir.dot.file.txt');
+        test.equal(expected, actual);
+
+        // hashFile
+        var hashmap = grunt.file.readJSON('tmp/hashFile.json');
+        var json = {
+            'test/fixtures/dir/DirTestFile': 'tmp/hashFile/0a5556155683808d729747bd2ae40e64',
+            'test/fixtures/dir/dir.dot.file.txt': 'tmp/hashFile/4c427803070155fb51ff613e9bc77b39',
+            'test/fixtures/dot.file.txt': 'tmp/hashFile/3db5fd673488a73564460f419afe53ef',
+            'test/fixtures/testFile': 'tmp/hashFile/d4728e20f195aa3992a6172487f5f91f'
         };
         test.deepEqual(hashmap, json);
 
