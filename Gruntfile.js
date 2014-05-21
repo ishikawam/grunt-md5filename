@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: false,
           keepExtension: false,
-          pathType: 'filename',
+          hashTarget: 'filename',
           hashFile: 'tmp/mainHash.json',
           debug: true,
         },
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: false,
           keepExtension: false,
-          pathType: 'filename',
+          hashTarget: 'filename',
           hashFile: 'tmp/hashFileUnexpand.json',
           debug: true,
         },
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: false,
           keepExtension: false,
-          pathType: 'filename',
+          hashTarget: 'filename',
           hashFile: 'tmp/hashFile.json',
           debug: true,
         },
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: true,
           keepExtension: false,
-          pathType: 'filename',
+          hashTarget: 'filename',
           hashLength: 31,
           debug: true,
         },
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: false,
           keepExtension: true,
-          pathType: 'filename',
+          hashTarget: 'filename',
           hashLength: 30,
           debug: true,
         },
@@ -109,7 +109,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: true,
           keepExtension: true,
-          pathType: 'filename',
+          hashTarget: 'filename',
           debug: true,
         },
         expand: true,
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: false,
           keepExtension: false,
-          pathType: 'filename',
+          hashTarget: 'filename',
           debug: true,
         },
         expand: false,
@@ -132,7 +132,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: true,
           keepExtension: true,
-          pathType: 'filename',
+          hashTarget: 'filename',
           debug: true,
         },
         expand: false,
@@ -141,7 +141,7 @@ module.exports = function(grunt) {
       },
       filepath: {
         options: {
-          pathType: 'filepath',
+          hashTarget: 'filepath',
           debug: true,
         },
         expand: true,
@@ -153,7 +153,7 @@ module.exports = function(grunt) {
         options: {
           keepBasename: true,
           keepExtension: true,
-          pathType: 'filepath',
+          hashTarget: 'filepath',
           debug: true,
         },
         expand: true,
@@ -164,7 +164,7 @@ module.exports = function(grunt) {
       saltPrefix: {
         options: {
           saltPrefix: '*prefix*',
-          pathType: 'filename',
+          hashTarget: 'filename',
           debug: true,
         },
         expand: true,
@@ -177,7 +177,7 @@ module.exports = function(grunt) {
           saltSuffix: '.suffix.',
           keepBasename: true,
           keepExtension: true,
-          pathType: 'filename',
+          hashTarget: 'filename',
           debug: true,
         },
         expand: true,
@@ -191,7 +191,7 @@ module.exports = function(grunt) {
           saltSuffix: '{suffix[',
           keepBasename: true,
           keepExtension: true,
-          pathType: 'filepath',
+          hashTarget: 'filepath',
           debug: true,
         },
         expand: true,
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
       },
       ignorePatterns: {
         options: {
-          pathType: 'filepath',
+          hashTarget: 'filepath',
           ignorePatterns: ['*dot.file.txt'],
           debug: true,
         },
@@ -209,6 +209,16 @@ module.exports = function(grunt) {
         cwd: 'test/fixtures/',
         src: ['**/*'],
         dest: 'tmp/ignorePatterns/',
+      },
+      fileContent: {
+        options: {
+          hashTarget: 'filecontent',
+          debug: true,
+        },
+        expand: true,
+        cwd: 'test/fixtures/',
+        src: ['**/*'],
+        dest: 'tmp/fileContent/',
       },
     },
     nodeunit: {

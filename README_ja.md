@@ -39,7 +39,7 @@ _`grunt md5filename` コマンドでこのタスクを実行します。_
  
 ### オプション
 
-#### pathType
+#### hashTarget
 Type: `String`
 Default: 'filename'
 
@@ -63,6 +63,15 @@ c29b1fd35e7e51210f3264d567650ac7
 img/github/octocat.png
 ->  md5('img/github/octocat.png')
 ea8bfe94d1b4278fcd9dca963dde3e00
+```
+
+* filecontent
+  * 例:
+
+```
+img/github/file.json = {"file":"content"}
+->  md5('{"file":"content"}')
+15b2a3845b5a28209a4fd001fa5ee3ba
 ```
 
 #### keepBasename
@@ -173,7 +182,7 @@ md5filename: {
     options: {
       keepBasename: false, // デフォルトfalseでは(MD5ファイル名.jpg) trueでは(元のファイル名-MD5ファイル名.jpg)
       keepExtension: true, // デフォルトfalseでは拡張子を排除 trueでは元の拡張子を付与
-      pathType: 'filename', // MD5元は filename ファイル名, filepath 相対パス
+      hashTarget: 'filename', // MD5元は filename ファイル名, filepath 相対パス
       hashFile: 'tmp/hash.json', // ハッシュマップjsonファイルを保存
       hashLength: 20,
       debug: true, // 元ファイル、保存ファイルを表示

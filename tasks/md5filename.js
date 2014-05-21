@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      pathType: 'filename',
+      hashTarget: 'filename',
       keepBasename: false,
       keepExtension: false,
       saltPrefix: '',
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
           if (!isMatch) {
             // default: use filename
             var target = path.basename(srcFile);
-            if (options.pathType === 'filepath') {
+            if (options.hashTarget === 'filepath') {
               target = srcFile;
             }
 
@@ -67,7 +67,13 @@ module.exports = function(grunt) {
               ext = path.extname(srcFile);
             }
 
-            var hash = require('crypto').createHash('md5').update(target).digest('hex');
+            var hashKey = target;
+
+            if(options.hashTarget === 'filecontent') {
+              hashKey = grunt.file.read(srcFile);
+            }
+
+            var hash = require('crypto').createHash('md5').update(hashKey).digest('hex');
             if (options.hashLength !== null) {
               hash = hash.slice(0, options.hashLength);
             }
