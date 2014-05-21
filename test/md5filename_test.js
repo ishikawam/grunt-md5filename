@@ -465,4 +465,34 @@ exports.copy = {
 
         test.done();
     },
+    fileContent: function(test) {
+      'use strict';
+
+      test.expect(4);
+
+      var actual;
+      var expected;
+
+      // md5('testFile')
+      actual = grunt.file.read('tmp/fileContent/d43a6ecaa892a1962398ac9170ea9bf2');
+      expected = grunt.file.read('test/fixtures/testFile');
+      test.equal(expected, actual);
+
+      // md5('dot.file.txt')
+      actual = grunt.file.read('tmp/fileContent/a07bbbfda25fcfd757e94c0a6f24b578');
+      expected = grunt.file.read('test/fixtures/dot.file.txt');
+      test.equal(expected, actual);
+
+      // md5('DirTestFile')
+      actual = grunt.file.read('tmp/fileContent/dir/239b3b9cc255d47dca28717e8e0ea7dd');
+      expected = grunt.file.read('test/fixtures/dir/DirTestFile');
+      test.equal(expected, actual);
+
+      // md5('dir.dot.file.txt')
+      actual = grunt.file.read('tmp/fileContent/dir/3c05a19762cadbae3d7fe4192c6e8efb');
+      expected = grunt.file.read('test/fixtures/dir/dir.dot.file.txt');
+      test.equal(expected, actual);
+
+      test.done();
+    },
 };

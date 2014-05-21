@@ -36,11 +36,11 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 ### Options
 
-#### pathType
+#### hashTarget
 Type: `String`
 Default: 'filename'
 
-select MD5 target for file name or file name with path.
+select MD5 target for file name, file name with path, or file content.
 
 * filename
   * file name
@@ -61,6 +61,17 @@ img/github/octocat.png
 ->  md5('img/github/octocat.png')
 ea8bfe94d1b4278fcd9dca963dde3e00
 ```
+
+* filecontent
+  * file contents
+  * ex)
+
+```
+img/github/file.json = {"file":"content"}
+->  md5('{"file":"content"}')
+15b2a3845b5a28209a4fd001fa5ee3ba
+```
+
 
 #### keepBasename
 Type: `Boolean`
@@ -171,7 +182,7 @@ md5filename: {
     options: {
       keepBasename: false,
       keepExtension: true,
-      pathType: 'filename',
+      hashTarget: 'filename',
       hashFile: 'tmp/hash.json',
       hashLength: 20,
       debug: true,
